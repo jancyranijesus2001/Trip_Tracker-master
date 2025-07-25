@@ -1,0 +1,44 @@
+<!-- hotel.html -->
+
+{% extends 'main.html' %}
+
+{% block content %}
+<section class="bg-light py-4 my-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="mb-3"> Search Results for "{{ hotel }}"</h2>
+                <hr style="border-color:#b8bfc2;">
+            </div>
+            {% if hotel_names %}
+            {% for hotel_name in hotel_names %}
+            <div class="col-md-4 col-lg-3">
+                <div class="card my-3" style="width:320px; padding:10px; border:3px solid gray; margin:0;">
+                    <h3>{{ hotel_name.hotel_name }}</h3>
+                    <img src="{{ hotel_name.image.url }}" alt="{{ hotel_name.hotel_name }}" class="card-img-top"
+                        style="height:280px; width:100%;">
+                    {% if hotel_name.latitude and hotel_name.longitude %}
+                    <a
+                        href="https://maps.google.com/maps?q={{ hotel_name.latitude }},{{ hotel_name.longitude }}">Location</a>
+                    {% else %}
+                    <span>No location available</span>
+                    {% endif %}
+                    <hr>
+                    <div class="card-body">
+                        <p class="card-text">{{ hotel_name.description }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <div class="col-12">
+                <p>No hotels found.</p>
+            </div>
+            {% endif %}
+        </div>
+        <div class="mb-3">
+    <a href="{% url 'home' %}" class="btn btn-primary">← Back to Home</a>
+</div>
+    </div>
+</section>
+{% endblock %}

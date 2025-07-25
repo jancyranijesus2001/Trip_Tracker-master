@@ -1,0 +1,46 @@
+<!-- templates/search_results.html -->
+{% extends 'main.html' %}
+{% block content %}
+<!--<h2>Search Results for "{{ destination }}"</h2>
+<ul>
+    {% for place in places %}
+    <li>{{ place.name }}</li>
+    <img src="{{ place.image.url }}" alt="{{ place.name }}">
+    <a href="https://maps.app.goo.gl/UpMC7cfCAc2epguc8">location</a>
+    <p>{{ place.description }}</p>
+    {% endfor %}
+</ul>-->
+
+<section class="bg-light py-4 my-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="mb-3"> Search Results for "{{ destination }}"</h4>
+                    <hr style="border-color:#b8bfc2;">
+            </div>
+            {% for place in places %}
+            <div class="col-md-4 col-lq-3">
+                <div class="card my-3" style="width:320px; padding:10px; border:3px solid gray; margin:0;">
+                    <h3>{{ place.name }}</h3>
+                    <img src="{{ place.image.url }}" alt="{{ place.name }}" class="card-image-top"
+                        style="height:280px; width:250px;">
+                    <a href="https://www.google.com/maps/search/?api=1&query={{ place.name }}">Location</a>
+                    <!--  {% if place.latitude and place.longitude %}
+                    <a href="https://maps.google.com/maps?q={{ place.latitude }},{{ place.longitude }}">Location</a>
+                    {% else %}
+                    <span>No location available</span>
+                    {% endif %}-->
+                    <hr>
+                    <div class="card-body">
+                        <p class="card-title text-primary">{{ place.description }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="mb-3">
+    <a href="{% url 'home' %}" class="btn btn-primary">← Back to Home</a>
+</div>
+    </div>
+</section>
+{% endblock %}
