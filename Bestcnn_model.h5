@@ -1,0 +1,5 @@
+from tensorflow.keras.models import load_model
+
+# Load and remove optimizer to reduce file size
+model = load_model("Bestcnn_model.h5")
+model.save("Bestcnn_model_smaller.h5", include_optimizer=False)
